@@ -48,7 +48,7 @@ spring:
       # it can be set to any label, branch or commit of the configuration source Git repository
   data:
     mongodb:
-      uri: mongodb://localhost:27017
+      uri: # LIEN DE CONNEXION MONGODB DIALK
       database: mongo4
   mail:
     host: localhost

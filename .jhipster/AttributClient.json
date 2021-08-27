@@ -1,0 +1,39 @@
+{
+  "name": "AttributClient",
+  "fields": [
+    {
+      "fieldName": "nomAttribut",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "contenu",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "client",
+      "otherEntityRelationshipName": "attributclient",
+      "relationshipName": "client"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "annexeOut",
+      "otherEntityRelationshipName": "attributclient",
+      "relationshipName": "annexeout"
+    }
+  ],
+  "entityTableName": "attribut_client",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210802101254"
+}

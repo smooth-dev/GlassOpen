@@ -1,0 +1,96 @@
+entity Client{
+nomClient String required
+prenomClient String required
+cin String required
+adresse String required
+}
+
+
+
+entity Dossier{
+numeroDossier String required unique
+}
+
+ 
+
+entity Produit {
+nomProduit String required
+}
+
+ 
+
+entity Annexe {
+nomAnnexe String required
+enteteAnnexe String required
+}
+
+entity AnnexeOut {
+nomAnnexe String required
+idClient String required
+}
+
+entity ProduitOut {
+nomAnnexe String required
+}
+
+entity AnnexeGroup {
+nomAnnexe String required
+}
+
+
+
+entity Attribut{
+nomAttribut String required
+}
+
+entity AttributClient{
+nomAttribut String required
+contenu String required
+}
+
+ 
+
+relationship OneToMany{
+Client{dossier} to Dossier{client}
+}
+
+
+ 
+
+relationship OneToMany{
+Produit{dossier} to Dossier{produit}
+}
+
+ 
+
+relationship OneToMany{
+Produit{annexe} to Annexe{produit}
+}
+
+relationship OneToMany{
+Produit{annexegroup} to AnnexeGroup{produit}
+}
+
+relationship OneToMany{
+Produit{produitout} to ProduitOut{produit}
+}
+
+relationship OneToMany{
+AnnexeGroup{annexeout} to AnnexeOut{annexegroup}
+}
+
+
+
+ 
+
+relationship OneToMany{
+Annexe{attribut} to Attribut{annexe}
+}
+
+relationship OneToMany{
+Client{attributclient} to AttributClient{client}
+}
+
+relationship OneToMany{
+AnnexeOut{attributclient} to AttributClient{annexeout}
+}

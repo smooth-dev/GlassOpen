@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="annexeOut">
+      <h2 data-cy="annexeOutDetailsHeading"><span>Annexe Out</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ annexeOut.id }}</span>
+        </dd>
+        <dt><span>Nom Annexe</span></dt>
+        <dd>
+          <span>{{ annexeOut.nomAnnexe }}</span>
+        </dd>
+        <dt><span>Id Client</span></dt>
+        <dd>
+          <span>{{ annexeOut.idClient }}</span>
+        </dd>
+        <dt><span>Annexegroup</span></dt>
+        <dd>
+          <div *ngIf="annexeOut.annexegroup">
+            <a [routerLink]="['/annexe-group', annexeOut.annexegroup?.id, 'view']">{{ annexeOut.annexegroup?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/annexe-out', annexeOut.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

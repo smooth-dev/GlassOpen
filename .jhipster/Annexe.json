@@ -1,0 +1,39 @@
+{
+  "name": "Annexe",
+  "fields": [
+    {
+      "fieldName": "nomAnnexe",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "enteteAnnexe",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "attribut",
+      "otherEntityRelationshipName": "annexe",
+      "relationshipName": "attribut"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "produit",
+      "otherEntityRelationshipName": "annexe",
+      "relationshipName": "produit"
+    }
+  ],
+  "entityTableName": "annexe",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210726095101"
+}

@@ -1,4 +1,7 @@
 node_modules/
+src/main/webapp/app/home/components/
+src/main/webapp/app/home/components/button/
+src/main/webapp/app/home/components/checkbox/
 src/main/docker/
 jest.conf.js
 webpack/

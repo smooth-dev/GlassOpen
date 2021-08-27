@@ -1,0 +1,91 @@
+table td {
+  width: 200px;
+  overflow: hidden;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+table th {
+  width: 200px;
+  overflow: hidden;
+  display: inline-block;
+  white-space: nowrap;
+}
+/* ==========================================================================
+Main page styles
+========================================================================== */
+span {
+  font-weight: bold;
+}
+h3 {
+  color: #279677;
+}
+.demo-table {
+  width: 100%;
+}
+
+.bold {
+  font-weight: bold;
+}
+.mat-column-demo-nSimulation {
+  width: 32px;
+  border-right: 1px solid currentColor;
+  padding-right: 24px;
+  text-align: center;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+.mat-column-demo-nom {
+  padding-left: 16px;
+  font-size: 17px;
+}
+.mat-column-demo-dSimulation,
+.mat-column-demo-eSimulation {
+  font-size: 17px;
+}
+
+.mat-column-demo-nCompte {
+  font-weight: bold;
+  font-size: 17px;
+}
+
+mat-radio-button {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.floating-menu {
+  position: absolute;
+  right: 1%;
+}
+@media only screen and (max-width: 1086px) {
+  .floating-menu {
+    display: none;
+  }
+}
+.flex {
+  display: flex !important;
+}
+.mat-grid-list-col {
+  display: flex !important;
+  flex-direction: column;
+}
+.label {
+  color: rgb(7, 7, 7) !important;
+  font-weight: bold;
+}
+.synthese-title {
+  text-decoration: underline;
+  position: absolute;
+  top: 1%;
+  left: 1%;
+}
+
+.mat-panel-title {
+  align-items: baseline;
+}

@@ -1,0 +1,95 @@
+<div>
+  <h2 id="page-heading" data-cy="AnnexeGroupHeading">
+    <span>Annexe Groups</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-annexe-group"
+        [routerLink]="['/annexe-group/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Annexe Group </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="annexeGroups?.length === 0">
+    <span>No annexeGroups found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="annexeGroups && annexeGroups.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Nom Annexe</span></th>
+          <th scope="col"><span>Produit</span></th>
+          <th scope="col"><span>Produit</span></th>
+
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let annexeGroup of annexeGroups; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/annexe-group', annexeGroup.id, 'view']">{{ annexeGroup.id }}</a>
+          </td>
+          <td>{{ annexeGroup.nomAnnexe }}</td>
+          <td>
+            <div *ngIf="annexeGroup.produit">
+              <a [routerLink]="['/produit', annexeGroup.produit?.id, 'view']">{{ annexeGroup.produit?.nomProduit }}</a>
+            </div>
+          </td>
+          <td>
+            <ul *ngFor="let att of annexeGroup.annexeouts">
+              <li>{{ att.nomAnnexe }} : {{ att.id }}</li>
+              <ul *ngFor="let attt of att.attributclients">
+                <li>{{ attt.contenu }}</li>
+              </ul>
+            </ul>
+          </td>
+
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/annexe-group', annexeGroup.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/annexe-group', annexeGroup.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(annexeGroup)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

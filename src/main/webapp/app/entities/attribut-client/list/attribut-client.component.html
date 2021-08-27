@@ -1,0 +1,92 @@
+<div>
+  <h2 id="page-heading" data-cy="AttributClientHeading">
+    <span>Attribut Clients</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-attribut-client"
+        [routerLink]="['/attribut-client/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Attribut Client </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="attributClients?.length === 0">
+    <span>No attributClients found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="attributClients && attributClients.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Nom Attribut</span></th>
+          <th scope="col"><span>Contenu</span></th>
+          <th scope="col"><span>Client</span></th>
+          <th scope="col"><span>Annexeout</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let attributClient of attributClients; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/attribut-client', attributClient.id, 'view']">{{ attributClient.id }}</a>
+          </td>
+          <td>{{ attributClient.nomAttribut }}</td>
+          <td>{{ attributClient.contenu }}</td>
+          <td>
+            <div *ngIf="attributClient.client">
+              <a [routerLink]="['/client', attributClient.client?.id, 'view']">{{ attributClient.client?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="attributClient.annexeout">
+              <a [routerLink]="['/annexe-out', attributClient.annexeout?.id, 'view']">{{ attributClient.annexeout?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/attribut-client', attributClient.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/attribut-client', attributClient.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(attributClient)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<br />
+<br />
+<h1 style="font-weight: bold">Formulaire complementaire</h1>
+<br />
+<h2>Client id : 54545474</h2>
+<br />
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div *ngFor="let formField of formFields" class="form-group col-4">
+    <label> {{ formField.fieldName }}</label>
+    <input
+      class="form-control"
+      type="{{ formField.fieldType }}"
+      value="{{ formField.fieldName }}"
+      [required]="formField.required"
+      formControlName="{{ formField.fieldName }}"
+    />
+    <br />
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="this.form.invalid">Enregistrer</button>
+</form>

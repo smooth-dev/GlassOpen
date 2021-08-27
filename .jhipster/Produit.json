@@ -1,0 +1,46 @@
+{
+  "name": "Produit",
+  "fields": [
+    {
+      "fieldName": "nomProduit",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "dossier",
+      "otherEntityRelationshipName": "produit",
+      "relationshipName": "dossier"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "annexe",
+      "otherEntityRelationshipName": "produit",
+      "relationshipName": "annexe"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "annexeGroup",
+      "otherEntityRelationshipName": "produit",
+      "relationshipName": "annexegroup"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "produitOut",
+      "otherEntityRelationshipName": "produit",
+      "relationshipName": "produitout"
+    }
+  ],
+  "entityTableName": "produit",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210726095100"
+}

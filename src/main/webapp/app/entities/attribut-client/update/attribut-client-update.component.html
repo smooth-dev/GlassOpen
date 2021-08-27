@@ -1,0 +1,89 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-attribut-client-heading" data-cy="AttributClientCreateUpdateHeading">Create or edit a Attribut Client</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" for="field_id">ID</label>
+          <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_nomAttribut">Nom Attribut</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nomAttribut"
+            id="field_nomAttribut"
+            data-cy="nomAttribut"
+            formControlName="nomAttribut"
+          />
+          <div *ngIf="editForm.get('nomAttribut')!.invalid && (editForm.get('nomAttribut')!.dirty || editForm.get('nomAttribut')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nomAttribut')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_contenu">Contenu</label>
+          <input
+            type="text"
+            class="form-control"
+            name="contenu"
+            id="field_contenu"
+            data-cy="contenu"
+            value="test"
+            formControlName="contenu"
+          />
+          <div *ngIf="editForm.get('contenu')!.invalid && (editForm.get('contenu')!.dirty || editForm.get('contenu')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('contenu')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_client">Client</label>
+          <select class="form-control" id="field_client" data-cy="client" name="client" formControlName="client">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="clientOption.id === editForm.get('client')!.value?.id ? editForm.get('client')!.value : clientOption"
+              *ngFor="let clientOption of clientsSharedCollection; trackBy: trackClientById"
+            >
+              {{ clientOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_annexeout">Annexeout</label>
+          <select class="form-control" id="field_annexeout" data-cy="annexeout" name="annexeout" formControlName="annexeout">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="annexeOutOption.id === editForm.get('annexeout')!.value?.id ? editForm.get('annexeout')!.value : annexeOutOption"
+              *ngFor="let annexeOutOption of annexeOutsSharedCollection; trackBy: trackAnnexeOutById"
+            >
+              {{ annexeOutOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

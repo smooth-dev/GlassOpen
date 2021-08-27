@@ -41,6 +41,19 @@
     "prodDatabaseType": "mongodb",
     "clientPackageManager": "npm",
     "clientThemeVariant": "",
-    "languages": ["en", "fr"]
+    "languages": ["en", "fr"],
+    "entities": [
+      "Client",
+      "Dossier",
+      "Produit",
+      "Annexe",
+      "Attribut",
+      "AttributClient",
+      "AnnexeOut",
+      "AttributOut",
+      "ProduitOut",
+      "AnnexeGroup"
+    ],
+    "lastLiquibaseTimestamp": 1629209689000
   }
 }

@@ -1,0 +1,28 @@
+{
+  "name": "ProduitOut",
+  "fields": [
+    {
+      "fieldName": "nomAnnexe",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "produit",
+      "otherEntityRelationshipName": "produitout",
+      "relationshipName": "produit"
+    }
+  ],
+  "entityTableName": "produit_out",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210817132842"
+}

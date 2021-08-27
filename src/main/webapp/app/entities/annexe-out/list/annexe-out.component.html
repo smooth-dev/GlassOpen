@@ -1,0 +1,267 @@
+<br /><br /><br />
+<div>
+  <h2 id="page-heading" data-cy="AnnexeOutHeading">
+    <span>Annexes Générées</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Rafraichir la liste</span>
+      </button>
+
+      <!--  <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-annexe-out"
+        [routerLink]="['/annexe-out/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Annexe Out </span>
+      </button> -->
+    </div>
+    <br /><br />
+    <h3>Filtrer par num de dossier</h3>
+    <select class="form-control" [(ngModel)]="selectedDossier">
+      <option *ngFor="let o of dossiers">
+        {{ o.numeroDossier }}
+      </option>
+    </select>
+    <button (click)="test2()" class="btn btn-primary">Ok</button>
+
+    <!--    <p>Selected opt ion: {{ selectedDossier }}</p>
+    <p>Button output: {{ printedDossier }}</p> -->
+
+    <!--  <select class="form-control" [(ngModel)]="selectedOption">
+      <option *ngFor="let o of produits">
+        {{ o.nomProduit }}
+      </option>
+    </select>
+    <button (click)="test()" class="btn btn-primary">Click me</button>
+
+    <p>Selected opt ion: {{ selectedOption }}</p>
+    <p>Button output: {{ printedOption }}</p> -->
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="annexeOuts?.length === 0">
+    <span>No annexeOuts found</span>
+  </div>
+
+  <!-- 
+<div *ngFor="let att of produits"  >
+  <div *ngFor="let attt of att?.annexegroups"  >
+
+
+  <div class="table-responsive" id="entities" *ngIf="1 > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Produit</span></th>
+          <th scope="col"><span>Nom Annexe</span></th>
+          <th scope="col"><span>Id Client</span></th>
+          <th scope="col"><span>attributs</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let annexeOut of attt?.annexeouts; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/annexe-out', annexeOut.id, 'view']">{{ annexeOut.id }}</a>
+          </td>
+          <td>{{ annexeOut.annexegroup?.produit?.nomProduit }} </td>
+          <td>{{ annexeOut.nomAnnexe }}</td>
+          <td>{{ annexeOut.idClient }}</td>
+                    <td> 
+          <ul *ngFor="let att of annexeOut.attributclients">
+            <li> {{att.contenu}} </li>
+          </ul>
+        </td>
+
+         
+
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/annexe-out', annexeOut.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/annexe-out', annexeOut.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(annexeOut)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</div> -->
+
+  <!-- 
+<ul *ngFor="let att of produitsFiltered?.annexegroups" >  <li> {{att.nomAnnexe}}</li>
+ <ul *ngFor="let attt of att.annexeouts">
+            <li> {{attt.nomAnnexe}} </li>
+            <ul *ngFor="let x of attt.attributclients">
+            <li> {{x.contenu}} </li>
+          </ul>
+          </ul>
+          </ul> -->
+
+  <div *ngFor="let att of produits" class="accordion" id="accordionExample">
+    <br />
+    <br /><br />
+    <br />
+
+    <h1>{{ att.nomProduit }}</h1>
+    <div>
+      <div *ngFor="let attt of att?.annexegroups; index as o" class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button
+            class="accordion-button"
+            type="button"
+            data-bs-toggle="collapse"
+            [attr.data-bs-target]="'#' + mapthis(o)"
+            aria-expanded="true"
+            [attr.aria-controls]="mapthis(o)"
+          >
+            {{ attt.nomAnnexe }}
+          </button>
+        </h2>
+        <div
+          [attr.id]="mapthis(o)"
+          class="accordion-collapse collapse show"
+          aria-labelledby="headingOne"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+            <div class="table-responsive" id="entities" *ngIf="1 > 0">
+              <table class="table table-striped" aria-describedby="page-heading">
+                <div *ngFor="let annexeOut of attt?.annexeouts; trackBy: trackId; index as i; first as isFirst" data-cy="entityTable">
+                  <thead *ngIf="i == 0">
+                    <tr>
+                      <th scope="col">Client</th>
+                      <th scope="col" *ngFor="let att of annexeOut.attributclients">{{ att.nomAttribut }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <!--  <td>
+            <a [routerLink]="['/annexe-out', annexeOut.id, 'view']">{{ annexeOut.idClient}}</a>
+          </td> -->
+                      <td>
+                        <a [routerLink]="['/annexe-out', annexeOut.id, 'view']">{{ annexeOut.idClient }}</a>
+                      </td>
+                      <td *ngFor="let att of annexeOut.attributclients">{{ att.contenu }}</td>
+
+                      <!--         <td> 
+          <ul *ngFor="let att of annexeOut.attributclients">
+            <li> {{att.nomAttribut}} :: {{att.contenu}} </li>
+          </ul>
+        </td> -->
+
+                      <!-- Les buttons <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/annexe-out', annexeOut.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/annexe-out', annexeOut.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(annexeOut)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td> -->
+                    </tr>
+                  </tbody>
+                </div>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--  <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#three"
+          aria-expanded="false"
+          aria-controls="three"
+        >
+          Accordion Item #2
+        </button>
+      </h2>
+      <div id="three" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate
+          classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS
+          transitions. You can modif y any of this with custom CSS or overriding our default variables. It's also worth noting that just
+          about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingThree">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseTwo"
+          aria-expanded="false"
+          aria-controls="collapseTwo"
+        >
+          Accordion Item #3
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate
+          classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS
+          transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just
+          about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        </div>
+      </div>
+    </div> -->
+    </div>
+  </div>
+</div>

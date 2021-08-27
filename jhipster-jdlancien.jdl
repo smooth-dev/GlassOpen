@@ -1,0 +1,53 @@
+entity Client{
+nomClient String required
+prenomClient String required
+}
+
+ 
+
+entity Dossier{
+numeroDossier UUID required unique
+}
+
+ 
+
+entity Produit {
+nomProduit String required
+}
+
+ 
+
+entity Annexe {
+nomAnnexe String required
+enteteAnnexe String required
+}
+
+ 
+
+entity Attribut{
+nomAttribut String required
+}
+
+ 
+
+relationship OneToMany{
+Client{dossier} to Dossier{client}
+}
+
+ 
+
+relationship OneToMany{
+Produit{dossier} to Dossier{produit}
+}
+
+ 
+
+relationship OneToMany{
+Produit{annexe} to Annexe{produit}
+}
+
+ 
+
+relationship OneToMany{
+Annexe{attribut} to Attribut{annexe}
+}

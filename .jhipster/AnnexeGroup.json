@@ -1,0 +1,34 @@
+{
+  "name": "AnnexeGroup",
+  "fields": [
+    {
+      "fieldName": "nomAnnexe",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "annexeOut",
+      "otherEntityRelationshipName": "annexegroup",
+      "relationshipName": "annexeout"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "produit",
+      "otherEntityRelationshipName": "annexegroup",
+      "relationshipName": "produit"
+    }
+  ],
+  "entityTableName": "annexe_group",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210817141449"
+}
